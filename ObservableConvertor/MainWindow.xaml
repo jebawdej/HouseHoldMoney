@@ -1,0 +1,34 @@
+﻿<Window x:Class="ObservableConvertor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ObservableConvertor"
+        mc:Ignorable="d"
+        Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="4" TextAlignment="Center" VerticalAlignment="Center" FontSize="30"><Run Text="Property Convert"/><Run Text="or"/></TextBlock>
+        <Button Grid.Row="4" Grid.Column="1" Margin="20" Click="ConvertToVmProperty_Click">Convert to VM Property</Button>
+
+        <Button Grid.Row="4" Grid.Column="2" Margin="20" Click="ConvertToObservableProperty_Click">Convert to Observable</Button>
+        <TextBlock  Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" TextAlignment="Right" FontSize="18">DataType: </TextBlock>
+        <TextBox Name="DataTypeText" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" TextAlignment="Left" FontSize="18"></TextBox>
+
+        <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" TextAlignment="Right" FontSize="18">Propertie Name: </TextBlock>
+        <TextBox Name="PropertyNameText" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" TextAlignment="Left" FontSize="18"></TextBox>
+    </Grid>
+</Window>

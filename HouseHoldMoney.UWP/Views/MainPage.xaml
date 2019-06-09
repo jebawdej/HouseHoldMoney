@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="HouseHoldMoney.UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HouseHoldMoney.UWP"
+    xmlns:conv="using:HouseHoldMoney.UWP.Converters"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ 
+    mc:Ignorable="d"
+    DataContext="{Binding StartPageInstance, Source={StaticResource Locator}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    >
+    <Page.Resources>
+        <conv:StringFormatConverter x:Key="StringFormatConverter"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <!--<TextBlock Name="Title"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Title}" FontFamily="Segoe UI Historic" />-->
+
+         <controls:DataGrid x:Name="HouseHoldMoneyGrid"
+                  ItemsSource="{x:Bind Vm.HouseHoldMoneyCollection}"
+                  GridLinesVisibility="Vertical"
+                  IsReadOnly ="True"
+                  Width="380"
+                  Grid.Row="0" Grid.Column="0" Grid.RowSpan="9"
+                            SelectionMode="Single"
+                  SelectedItem="{x:Bind Vm.SelectedHouseHoldMoneyItem}"
+                  AutoGenerateColumns="False">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn Header="Organisation" Binding="{Binding Organisation}"/>
+                <controls:DataGridTextColumn Header="Description"  Binding="{Binding Description}"/>
+                <controls:DataGridTextColumn Header="Amount"       Binding="{Binding Amount ,
+                                             Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:N2}'}">
+                    <controls:DataGridTextColumn.CellStyle>
+                        <Style TargetType="controls:DataGridCell">
+                            <Style.Setters>
+                                <Setter Property="HorizontalAlignment" Value="Right"/>
+                            </Style.Setters>
+                        </Style>
+                    </controls:DataGridTextColumn.CellStyle>
+                </controls:DataGridTextColumn>
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Organisation" TextAlignment="Right" VerticalAlignment="Center" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="Description" TextAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="payment" TextAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="Amount" TextAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="Automatic Pay" TextAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Text="{Binding SelectedHouseHoldMoneyItem.Organisation}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"/>
+        <TextBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Text="{Binding SelectedHouseHoldMoneyItem.Description}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"/>
+        <TextBox Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Text="{Binding SelectedHouseHoldMoneyItem.Payment}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"/>
+        <TextBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Text="{Binding SelectedHouseHoldMoneyItem.Amount}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"/>
+        <TextBox Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Text="{Binding SelectedHouseHoldMoneyItem.Automatically}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"/>
+    </Grid>
+</Page>
